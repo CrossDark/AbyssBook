@@ -1,8 +1,8 @@
 [package]
 name = "AbyssBook"         # 项目名
-version = "0.1.0"        # 项目版本
-entrypoint = "template.typ"   # 项目入口文件
-authors = ["跨越晨昏 <@CrossDark>] # 开发人员
+version = "0.1.1"        # 项目版本
+entrypoint = "lib.typ"   # 项目入口文件
+authors = ["跨越晨昏 <@CrossDark>"] # 开发人员
 license = "MIT"          # 许可证书
 description = "..."      # 项目描述
 repository = "https://github.com/CrossDark/AbyssBook"       # Github 仓库目录
