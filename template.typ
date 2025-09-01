@@ -15,7 +15,7 @@
 #let fill-color = luma(30)
 
 // 此函数获取整个文档作为其 `body`。
-#let ilm(
+#let abyss-book(
   // 您作品的标题。
   title: [Your Title],
   // 作者姓名。
