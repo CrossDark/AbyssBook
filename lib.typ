@@ -93,7 +93,7 @@
 
   // 深色主题的封面页。
   page(
-    background: image("/image/封面.svg"),
+    background: image("/image/封面.svg", width: 100%, height: 100%),
     align(
       center,
       block(width: 90%)[
@@ -151,7 +151,10 @@
 
   // 将前言显示为第二页（深色主题）。
   if preface != none {
-    page(preface)
+    page(
+      background: image("image/正文.svg", width: 100%, height: 100%),
+      preface
+  )
   }
 
   // 显示目录（深色主题）。
@@ -161,7 +164,7 @@
 
   // 配置页码和页脚（深色主题）。
   set page(
-    background: image("image/正文.svg"),
+    background: image("image/正文.svg", width: 100%, height: 100%),
     footer: context {
       // 获取当前页码。
       let i = counter(page).at(here()).first()

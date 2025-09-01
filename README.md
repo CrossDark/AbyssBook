@@ -6,7 +6,7 @@
 
 ## macOS
 
-`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.0"`
+`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.1"`
 
 # 使用
 
