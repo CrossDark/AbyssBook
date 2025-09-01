@@ -93,11 +93,12 @@
 
   // 深色主题的封面页。
   page(
+    background: image("/image/封面.svg"),
     align(
       center,
       block(width: 90%)[
         // 顶部空白
-        #v(10em)
+        #v(23em)
 
         // 设置间距
         #let v-space = v(4em, weak: true)
@@ -160,6 +161,7 @@
 
   // 配置页码和页脚（深色主题）。
   set page(
+    background: image("image/正文.svg"),
     footer: context {
       // 获取当前页码。
       let i = counter(page).at(here()).first()
