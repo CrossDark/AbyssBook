@@ -1,6 +1,6 @@
 [package]
-name = "AbyssBook"         # 项目名
-version = "0.1.2"        # 项目版本
+name = "abyss-book"         # 项目名
+version = "0.1.3"        # 项目版本
 entrypoint = "lib.typ"   # 项目入口文件
 authors = ["跨越晨昏 <@CrossDark>"] # 开发人员
 license = "MIT"          # 许可证书
