@@ -102,7 +102,7 @@
   // 深色主题的封面页。
   if abstract == none { // 如果没有摘要，则显示一个有大圆的封面。
     page(
-      background: image("/image/大封面.svg", width: 100%, height: 100%),
+      background: image("/image/cover.svg", width: 100%, height: 100%),
       align(
         center + horizon,
         block(width: 90%)[
@@ -125,7 +125,7 @@
     )
   } else { // 如果有摘要，则显示一个标准封面
     page(
-      background: image("image/扉页.svg", width: 100%, height: 100%),
+      background: image("image/preface.svg", width: 100%, height: 100%),
       align(
         center + horizon,
         block(width: 50%)[
@@ -166,7 +166,7 @@
     set text(font: assist-font)
     if preface != none {
       page(
-        background: image("image/扉页.svg", width: 100%, height: 100%),
+        background: image("image/preface.svg", width: 100%, height: 100%),
         align(
           center + horizon,
           block(width: 50%)[#preface]
@@ -185,7 +185,7 @@
 
   // 配置页码和页脚（深色主题）。
   set page(
-    background: image("image/正文.svg", width: 100%, height: 100%),
+    background: image("image/main-body.svg", width: 100%, height: 100%),
     footer: context {
       // 获取当前页码。
       let i = counter(page).at(here()).first()

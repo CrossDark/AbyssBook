@@ -6,12 +6,12 @@
 
 ## macOS
 
-`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.7"`
+`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.8"`
 
 # 使用
 
 ```typst
-#import "@local/abyss-book:0.2.7": *
+#import "@local/abyss-book:0.2.8": *
 
 #show: abyss-book.with(
   // 您作品的标题。
