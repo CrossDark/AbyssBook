@@ -141,10 +141,10 @@
   // 扉页
   if abstract != none {
     page(
-      background: image("image/正文.svg", width: 100%, height: 100%),
+      background: image("image/扉页.svg", width: 100%, height: 100%),
       align(
         center + horizon,
-        block(width: 80%)[
+        block(width: 50%)[
           // 摘要内容
           // 默认行高是 0.65em。
           #par(leading: 0.78em, justify: true, linebreaks: "optimized", abstract)
