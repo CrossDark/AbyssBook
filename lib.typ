@@ -38,7 +38,7 @@
   // 调用 `outline` 函数的结果或 `none`。
   // 如果要禁用目录，请将其设置为 `none`。
   // 更多信息: https://typst.app/docs/reference/model/outline/
-  table-of-contents: outline(),
+  table-of-contents: outline(title: "目录"),
   // 在正文之后、参考文献之前显示附录。
   appendix: (
     enabled: false,
@@ -56,17 +56,17 @@
   external-link-circle: true,
   // 显示图（图像）的索引。
   figure-index: (
-    enabled: false,
+    enabled: true,
     title: "",
   ),
   // 显示表的索引
   table-index: (
-    enabled: false,
+    enabled: true,
     title: "",
   ),
   // 显示代码清单（代码块）的索引。
   listing-index: (
-    enabled: false,
+    enabled: true,
     title: "",
   ),
   // 您作品的内容。
@@ -243,7 +243,7 @@
   // 在参考文献之前显示附录（深色主题）。
   if appendix.enabled {
     pagebreak()
-    heading(level: 1, fill: white)[#appendix.at("title", default: "附录")]
+    heading(level: 1)[#appendix.at("title", default: "附录")]
 
     // 对于附录中的标题前缀，标准约定是 A.1.1.
     let num-fmt = appendix.at("heading-numbering-format", default: "A.1.1.")

@@ -3,11 +3,31 @@
 #show: abyss-book.with(
   title: [高端深渊人产品手册],
   author: "深渊",
-  abstract: [高端深渊人是我基于日用深渊人的研发经验,全新研发的一款人型生物,彻底解决了工具人的一系列历史遗留问题.支持表里世界两用,兼顾工作和娱乐.拥有极高的智慧和稳定可靠的身体.根据不同需求有多种型号可供选择],
+  abstract: [
+    高端深渊人是我基于日用深渊人的研发经验,全新研发的一款人型生物.
+  彻底解决了工具人的一系列历史遗留问题.支持表里世界两用,兼顾工作和娱乐.
+  拥有极高的智慧和稳定可靠的身体.根据不同需求有多种型号可供选择],
   date: datetime(year: 2024, month: 6, day: 16),
   figure-index: (enabled: true),
   table-index: (enabled: true),
-  listing-index: (enabled: true)
+  listing-index: (enabled: true),
+  preface: [
+    欢迎使用高端深渊人产品手册.
+    
+    本手册介绍了高端深渊人的各个型号,相关配件,许可证,服务,软件等内容.
+    
+    如果您有任何问题,请联系您的代理商或俱乐部.
+    
+    感谢您的支持.
+    
+    2024年6月16日
+  ],
+  appendix: (
+    enabled: true,
+    title: "附录",
+    heading-numbering-format: "A.[chapter]",
+    body: none,
+  ),
 )
 
 
@@ -328,4 +348,10 @@
   table.header(
     [说明书号], [说明书名称], [说明书简介], [说明书价格], [备注]
   ),
+
+
 )
+
+$$
+E = mc^2
+$$
