@@ -92,28 +92,43 @@
   )
 
   // 深色主题的封面页。
-  page(
-    background: image("/image/大封面.svg", width: 100%, height: 100%),
-    align(
-      center + horizon,
-      block(width: 90%)[
-        // 日期
-        #if date != none {
-          text(1.4em, fill: white, date.display(date-format))
-        } else {
-          // 如果没有提供日期，则插入一个空行以保持布局一致。
-          v(4.6em)
-        }
+  if abstract == none {
+    page(
+      background: image("/image/大封面.svg", width: 100%, height: 100%),
+      align(
+        center + horizon,
+        block(width: 90%)[
+          // 日期
+          #if date != none {
+            text(1.4em, fill: white, date.display(date-format))
+          } else {
+            // 如果没有提供日期，则插入一个空行以保持布局一致。
+            v(4.6em)
+          }
 
         // 标题居中
-        #text(3.3em, fill: white)[*#title*]
+          #text(3.3em, fill: white)[*#title*]
 
-        // 作者
-        #v(1em)
-        #text(1.6em, fill: white, author)
-      ],
-    ),
-  )
+          // 作者
+          #v(1em)
+          #text(1.6em, fill: white, author)
+        ],
+      ),
+    )
+  } else {
+    page(
+      background: image("image/扉页.svg", width: 100%, height: 100%),
+      align(
+        center + horizon,
+        block(width: 50%)[
+          // 摘要内容
+          // 默认行高是 0.65em。
+          #text(3.3em, fill: white)[*#title*]
+          #par(leading: 0.78em, justify: true, linebreaks: "optimized", abstract)
+        ],
+      ),
+    )
+  }
 
   // 使用深色主题配置段落属性。
   set par(leading: 0.7em, spacing: 1.35em, justify: true, linebreaks: "optimized")
@@ -138,26 +153,14 @@
     }
   }
 
-  // 扉页
-  if abstract != none {
+  // 将前言显示为第二或三页（深色主题）。
+  if preface != none {
     page(
       background: image("image/扉页.svg", width: 100%, height: 100%),
       align(
         center + horizon,
-        block(width: 50%)[
-          // 摘要内容
-          // 默认行高是 0.65em。
-          #par(leading: 0.78em, justify: true, linebreaks: "optimized", abstract)
-        ],
-      ),
-    )
-  }
-
-  // 将前言显示为第二页（深色主题）。
-  if preface != none {
-    page(
-      background: image("image/正文.svg", width: 100%, height: 100%),
-      preface
+        block(width: 50%)[#preface]
+      )
   )
   }
 
