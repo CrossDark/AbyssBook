@@ -6,12 +6,12 @@
 
 ## macOS
 
-`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.6"`
+`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.7"`
 
 # 使用
 
-```
-#import "@local/abyss-book:0.2.6": *
+```typst
+#import "@local/abyss-book:0.2.7": *
 
 #show: abyss-book.with(
   // 您作品的标题。
@@ -74,3 +74,4 @@
 
 - [x] 边框花纹: 在页面边缘环绕诡异花纹
 - [x] 使用`zh-kit`管理字体
+- [x] 排版优化-块缩进: 标题下面对应的文本块相对于标题缩进一格

@@ -1,5 +1,7 @@
 // 本模板基于lib模板https://github.com/talal/ilm 使用DeepSeek修改而成
 
+#import "@preview/zh-kit:0.1.0": *
+
 // 用于弥补缺少 `std` 作用域的工作区。
 #let std-bibliography = bibliography
 #let std-smallcaps = smallcaps
@@ -69,6 +71,12 @@
     enabled: true,
     title: "",
   ),
+  base-font: ("LXGW WenKai", "Xingkai SC", "新蒂朝露體", "小賴字體 SC", "DuanNingMaoBiXiaoKai", "Hanyi Senty Journal"), // 基础字体
+  raw-font: ("Fira Code"), // 代码字体
+  title-font: ("DuanNingMaoBiXiaoKai"), // 标题字体
+  assist-font: ("小賴字體 SC"), // 辅助字体
+  contents-font: ("新蒂竹林體"), // 目录字体
+
   // 您作品的内容。
   body,
 ) = {
@@ -80,10 +88,10 @@
   set text(fill: white, size: 12pt)
 
   // 设置中文字体和深色主题文本颜色
-  set text(font: ("SimSun", "SimHei", "Microsoft YaHei", "KaiTi", "STKaiti", "STSong"))
+  set text(font: base-font)
 
   // 设置原始文本字体及深色主题
-  show raw: set text(font: ("Iosevka", "Fira Mono"), size: 9pt, fill: white)
+  show raw: set text(font: raw-font, size: 9pt, fill: white)
 
   // 配置页面尺寸和边距。
   set page(
@@ -92,7 +100,7 @@
   )
 
   // 深色主题的封面页。
-  if abstract == none {
+  if abstract == none { // 如果没有摘要，则显示一个有大圆的封面。
     page(
       background: image("/image/大封面.svg", width: 100%, height: 100%),
       align(
@@ -107,15 +115,15 @@
           }
 
         // 标题居中
-          #text(3.3em, fill: white)[*#title*]
+          #text(3.3em, fill: white, font: title-font)[*#title*]
 
           // 作者
           #v(1em)
-          #text(1.6em, fill: white, author)
+          #text(1.6em, fill: white, font: "小賴字體 SC")[#author]
         ],
       ),
     )
-  } else {
+  } else { // 如果有摘要，则显示一个标准封面
     page(
       background: image("image/扉页.svg", width: 100%, height: 100%),
       align(
@@ -154,19 +162,25 @@
   }
 
   // 将前言显示为第二或三页（深色主题）。
-  if preface != none {
-    page(
-      background: image("image/扉页.svg", width: 100%, height: 100%),
-      align(
-        center + horizon,
-        block(width: 50%)[#preface]
-      )
-  )
+  {
+    set text(font: assist-font)
+    if preface != none {
+      page(
+        background: image("image/扉页.svg", width: 100%, height: 100%),
+        align(
+          center + horizon,
+          block(width: 50%)[#preface]
+        )
+    )
+    }
   }
 
   // 显示目录（深色主题）。
-  if table-of-contents != none {
-    table-of-contents
+  {
+    set text(font: contents-font)
+    if table-of-contents != none {
+      table-of-contents
+    }
   }
 
   // 配置页码和页脚（深色主题）。
@@ -240,6 +254,14 @@
       }
       it
     }
+    // 设置正文字体
+    // show: body => setup-base-fonts(
+    //   body,
+    //   cjk-serif-family: ("LXGW WenKai SC"), // 优先使用霞鹜文楷 SC
+    //   first-line-indent: 0em, // 设置首行缩进为2个字符宽度
+    // )
+    
+    // 显示正文内容
     body
   }
 

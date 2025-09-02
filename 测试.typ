@@ -369,3 +369,12 @@ width
 $$
 E = mc^2
 $$
+
+#raw("`​`​`python
+def hello_world():
+    print('Hello from Typst!')
+`df​`​`", lang: "python")
+
+#link("https://example.com")[显示文本]
+
+我们的项目地址是 https://github.com/typst/typst。
