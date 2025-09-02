@@ -93,35 +93,24 @@
 
   // 深色主题的封面页。
   page(
-    background: image("/image/封面.svg", width: 100%, height: 100%),
+    background: image("/image/大封面.svg", width: 100%, height: 100%),
     align(
-      center,
+      center + horizon,
       block(width: 90%)[
-        // 顶部空白
-        #v(23em)
+        // 日期
+        #if date != none {
+          text(1.4em, fill: white, date.display(date-format))
+        } else {
+          // 如果没有提供日期，则插入一个空行以保持布局一致。
+          v(4.6em)
+        }
 
-        // 设置间距
-        #let v-space = v(4em, weak: true)
-
-        // 标题
-        #text(3em, fill: white)[*#title*]
+        // 标题居中
+        #text(3.3em, fill: white)[*#title*]
 
         // 作者
-        #v-space
+        #v(1em)
         #text(1.6em, fill: white, author)
-
-        #if abstract != none {
-          v-space
-          block(width: 80%)[
-            // 默认行高是 0.65em。
-            #par(leading: 0.78em, justify: true, linebreaks: "optimized", abstract)
-          ]
-        }
-
-        #if date != none {
-          v-space
-          text(fill: white, date.display(date-format))
-        }
       ],
     ),
   )
@@ -147,6 +136,21 @@
       sym.wj
       super(box(height: 3.8pt, circle(radius: 1.2pt, stroke: 0.7pt + rgb("#ff6666"))))
     }
+  }
+
+  // 扉页
+  if abstract != none {
+    page(
+      background: image("image/正文.svg", width: 100%, height: 100%),
+      align(
+        center + horizon,
+        block(width: 80%)[
+          // 摘要内容
+          // 默认行高是 0.65em。
+          #par(leading: 0.78em, justify: true, linebreaks: "optimized", abstract)
+        ],
+      ),
+    )
   }
 
   // 将前言显示为第二页（深色主题）。
