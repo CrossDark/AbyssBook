@@ -48,10 +48,11 @@
     heading-numbering-format: "",
     body: none,
   ),
+  // 参考文献
   // 调用 `bibliography` 函数的结果或 `none`。
   // 示例: bibliography("refs.bib")
   // 更多信息: https://typst.app/docs/reference/model/bibliography/
-  bibliography: none,
+  bibliographys: none,
   // 是否在新页开始章节。
   chapter-pagebreak: true,
   // 是否在外部链接旁边显示一个绛红色圆圈。
@@ -123,7 +124,7 @@
         ],
       ),
     )
-  } else { // 如果有摘要，则显示一个标准封面
+  } else { // TODO 如果有摘要，则显示一个标准封面
     page(
       background: image("image/preface.svg", width: 100%, height: 100%),
       align(
@@ -254,12 +255,6 @@
       }
       it
     }
-    // 设置正文字体
-    // show: body => setup-base-fonts(
-    //   body,
-    //   cjk-serif-family: ("LXGW WenKai SC"), // 优先使用霞鹜文楷 SC
-    //   first-line-indent: 0em, // 设置首行缩进为2个字符宽度
-    // )
     
     // 显示正文内容
     body
@@ -293,8 +288,8 @@
     pagebreak()
     show std-bibliography: set text(0.85em, fill: white)
     // 对参考文献使用默认段落属性。
-    show std-bibliography: set par(leading: 0.65em, justify: false, linebreaks: auto, fill: white)
-    bibliography
+    show std-bibliography: set par(leading: 0.65em, justify: false, linebreaks: auto)
+    bibliography(bibliographys, title: "参考文献")
   }
 
   // 显示图、表和代码清单的索引（深色主题）。
@@ -331,6 +326,7 @@
       }
     }
   }
+  // setup-base-fonts(body)
 }
 
 // 此函数将其 `body`（内容）格式化为一个块引用（blockquote），适用于深色主题。
