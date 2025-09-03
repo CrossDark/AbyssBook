@@ -16,14 +16,14 @@ Install the template locally. if loading online, you can skip this step.
 
 ## macOS
 
-`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.9"`
+`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.2.10"`
 
 # 使用
 
 ```typst
-#import "@preview/abyss-book:0.2.9": * // 在线加载 
+#import "@preview/abyss-book:0.2.10": * // 在线加载 
 
-#import "@local/abyss-book:0.2.9": * // 或从本地加载
+#import "@local/abyss-book:0.2.10": * // 或从本地加载
 
 #show: abyss-book.with(
   // 您作品的标题。 The title of your work.
@@ -107,3 +107,4 @@ Install the template locally. if loading online, you can skip this step.
 
 - [x] 边框花纹: 在页面边缘环绕诡异花纹 Border Pattern: An eerie pattern encircles the page's edges.
 - [x] 排版优化-块缩进: 标题下面对应的文本块相对于标题缩进一格 Typography Optimization - Block Indentation: Text blocks corresponding to headings are indented one space relative to the heading.
+- [x] 修复中文粗体无法显示的问题

@@ -1,7 +1,5 @@
 // 本模板基于lib模板https://github.com/talal/ilm 使用DeepSeek修改而成
 
-#import "@preview/zh-kit:0.1.0": *
-
 // 用于弥补缺少 `std` 作用域的工作区。
 #let std-bibliography = bibliography
 #let std-smallcaps = smallcaps
@@ -284,7 +282,7 @@
   }
 
   // 显示参考文献（深色主题）。
-  if bibliography != none {
+  if bibliographys != none {
     pagebreak()
     show std-bibliography: set text(0.85em, fill: white)
     // 对参考文献使用默认段落属性。
