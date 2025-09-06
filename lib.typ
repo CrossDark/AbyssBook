@@ -287,7 +287,7 @@
     show std-bibliography: set text(0.85em, fill: white)
     // 对参考文献使用默认段落属性。
     show std-bibliography: set par(leading: 0.65em, justify: false, linebreaks: auto)
-    bibliography(bibliographys, title: "参考文献")
+    bibliographys
   }
 
   // 显示图、表和代码清单的索引（深色主题）。
