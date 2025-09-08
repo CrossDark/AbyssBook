@@ -263,26 +263,17 @@
       }
 
       // 在参考文献之前显示附录（深色主题）。
-      if appendix.enabled {
-        pagebreak()
-        heading(level: 1)[#appendix.at("title", default: "附录")]
+      {
+        if appendix.enabled {
+          pagebreak()
+          heading(level: 1)[#appendix.at("title", default: "附录")]
 
-        // TODO 对于附录中的标题前缀，标准约定是 A.1.1.
-        let num-fmt = appendix.at("heading-numbering-format", default: "A.1.1.")
+          counter(heading).update(0)
+          // TODO 对于附录中的标题前缀，标准约定是 A.1.1.
+          set heading(numbering: "A.1.")
 
-        counter(heading).update(0)
-        set heading(
-          outlined: false,
-          numbering: (..nums) => {
-            let vals = nums.pos()
-            if vals.len() > 0 {
-              let v = vals.slice(0)
-              return numbering(num-fmt, ..v)
-            }
-          },
-        )
-
-        appendix.body
+          appendix.body
+        }
       }
 
       // 显示参考文献（深色主题）。
