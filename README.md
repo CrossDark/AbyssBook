@@ -16,14 +16,18 @@ Install the template locally. if loading online, you can skip this step.
 
 ## macOS
 
-`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.3.5"`
+`git clone https://github.com/CrossDark/AbyssBook.git "$HOME/Library/Application Support/typst/packages/local/abyss-book/0.3.6"`
+
+# 警告 ⚠️ Warning
+
+<mark>不保证本模板中所有默认的字体都没有版权问题</mark>
 
 # 使用
 
 ```typst
-#import "@preview/abyss-book:0.3.5": * // 在线加载 
+#import "@preview/abyss-book:0.3.6": * // 在线加载 
 
-#import "@local/abyss-book:0.3.5": * // 或从本地加载
+#import "@local/abyss-book:0.3.6": * // 或从本地加载
 
 #show: abyss-book.with(
   // 您作品的标题。 The title of your work.
