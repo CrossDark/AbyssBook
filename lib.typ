@@ -16,6 +16,86 @@
 #let stroke-color = luma(80)
 #let fill-color = luma(30)
 
+// 字体设置,改编自zh-kit(https://github.com/ctypst/zh-kit)
+#let setup-fonts(
+  cjk-serif-family: (
+    "LXGW WenKai",
+    "思源宋体 CN",
+    "Songti SC",
+    "SimSun",
+  ),
+  cjk-sans-family: (
+    "思源黑体 CN",
+    "Inter",
+    "PingFang SC",
+    "SimHei"
+  ),
+  cjk-mono-family: (
+    "霞鹜文楷 Mono",
+    "WenQuanYi Zen Hei Mono",
+    "JetBrains Mono",
+    "Source Code Pro",
+    "Noto Sans Mono CJK SC",
+    "Menlo",
+    "Consolas",
+  ),
+  cjk-title-family: (
+    "DuanNingMaoBiXiaoKai",
+  ),
+  latin-serif-family: (
+    "Times New Roman",
+    "Georgia",
+  ),
+  latin-sans-family: (
+    "Times New Roman",
+    "Georgia",
+  ),
+  latin-mono-family: (
+    "JetBrains Mono",
+    "Consolas",
+    "Menlo",
+  ),
+  latin-title-family: (
+    "",
+  ),
+  first-line-indent: 0em,
+  doc
+) = {
+  let serif-family = latin-serif-family + cjk-serif-family
+  let sans-family = latin-sans-family + cjk-sans-family
+  let mono-family = latin-mono-family + cjk-mono-family
+  let title-font = latin-title-family + cjk-title-family
+
+  set text(
+    lang: "zh",
+    font: serif-family
+  )
+
+  set par(first-line-indent: (amount: first-line-indent, all: true))
+
+  show heading: x => {
+    set text(font: title-font)
+    x
+  }
+
+  show strong: x => {
+    set text(font: sans-family)
+    x
+  }
+
+  show underline: x => {
+    set text(font: sans-family)
+    x
+  }
+
+  show raw: x => {
+    set text(font: mono-family)
+    x
+  }
+
+  doc
+}
+
 // 此函数获取整个文档作为其 `body`。
 #let abyss-book(
   // 您作品的标题。
@@ -73,31 +153,15 @@
     title: "",
   ),
   fonts: (
-    cover-font: (
-      title-font: "DuanNingMaoBiXiaoKai",
-      author-font: "新蒂朝露體",
-      abstract-font: "新蒂龍宮体",
+    title-font: "DuanNingMaoBiXiaoKai", // 标题字体
+    cover-font: ( // 封面字体
+      author-font: "新蒂朝露體", // 作者字体
+      abstract-font: "新蒂龍宮体", // 简介字体
     ),
-    preface-font: "漢儀新蒂春聯體",
-    contents-font: "小賴字體 SC",
-    main-text: (
-      title-font: "DuanNingMaoBiXiaoKai",
-    ),
-    appendix-font: "WenQuanYi Zen Hei",
-    // 一般的字体
-    cjk-mono-family: ("LXGW WenKai Mono", "JetBrains Mono"),
-    cjk-sans-family: ("PingFang SC",),
-    cjk-serif-family: ("LXGW WenKai",),
-    latin-mono-family: ("Fira Code",),
-    latin-sans-family: ("Times New Roman", "Georgia",),
-    latin-serif-family: ("Times New Roman", "Georgia",),
+    preface-font: "小賴字體 SC", // 前言字体
+    contents-font: "小賴字體 SC", // 目录字体
+    appendix-font: "WenQuanYi Zen Hei", // 附录字体
   ),
-  base-font: ("LXGW WenKai", "Xingkai SC", "新蒂朝露體", "小賴字體 SC", "DuanNingMaoBiXiaoKai", "Hanyi Senty Journal"), // 基础字体
-  raw-font: ("Fira Code"), // 代码字体
-  title-font: ("DuanNingMaoBiXiaoKai"), // 标题字体
-  assist-font: ("小賴字體 SC"), // 辅助字体
-  contents-font: ("新蒂竹林體"), // 目录字体
-
   // 您作品的内容。
   body,
 ) = {
@@ -107,12 +171,6 @@
   // 设置深色主题 - 黑色背景和白色文本
   set page(fill: black)
   set text(fill: white, size: 12pt)
-
-  // 设置中文字体和深色主题文本颜色
-  // set text(font: base-font)
-
-  // 设置原始文本字体及深色主题
-  // show raw: set text(font: raw-font, size: 9pt, fill: white)
 
   // 配置页面尺寸和边距。
   set page(
@@ -136,7 +194,7 @@
           }
 
           // 标题居中
-          #text(3.3em, fill: white, font: fonts.cover-font.title-font)[*#title*]
+          #text(3.3em, fill: white, font: fonts.title-font)[*#title*]
 
           // 作者
           #v(1em)
@@ -184,7 +242,7 @@
 
   // 将前言显示为第二或三页（深色主题）。
   {
-    set text(font: assist-font)
+    set text(font: fonts.preface-font)
     if preface != none {
       page(
         background: image("image/preface.svg", width: 100%, height: 100%),
@@ -281,14 +339,8 @@
     // TODO 设置文段缩进
     
     // 显示正文内容
-    setup-base-fonts(
+    setup-fonts(
       body,
-      cjk-mono-family: fonts.cjk-mono-family,
-      cjk-sans-family: fonts.cjk-sans-family,
-      cjk-serif-family: fonts.cjk-serif-family,
-      latin-mono-family: fonts.latin-mono-family,
-      latin-sans-family: fonts.latin-sans-family,
-      latin-serif-family: fonts.latin-serif-family,
     )
   }
 
@@ -298,6 +350,7 @@
       pagebreak()
       heading(level: 1)[#appendix.at("title", default: "附录")]
 
+      // 重制标题计数器
       counter(heading).update(0)
       // TODO 对于附录中的标题前缀，标准约定是 A.1.1.
       set heading(numbering: "A.1.")
