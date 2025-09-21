@@ -73,20 +73,36 @@
 
   set par(first-line-indent: (amount: first-line-indent, all: true))
 
-  show heading: x => {
+  show heading: x => { // 设置标题字体
     set text(font: title-font)
     x
   }
 
-  show strong: x => {
+  show strong: x => { // 设置粗体
     set text(font: sans-family)
     x
   }
 
-  show underline: x => {
+  show emph: x => { // 设置斜体
     set text(font: sans-family)
     x
   }
+
+  show underline: x => { // 设置下划线
+    set text(font: sans-family)
+    x
+  }
+
+  show strike: x => { // 设置删除线
+    set text(font: sans-family)
+    x
+  }
+
+  show overline: x => {
+    set text(font: sans-family)
+    x
+  }
+
 
   show raw: x => {
     set text(font: mono-family)
@@ -324,19 +340,45 @@
   // 将 `body` 用花括号包裹，使其拥有自己的上下文。这样 show/set 规则将仅适用于 body。
   {
     // 配置标题编号。
-    set heading(numbering: "1.")
+    set heading(numbering: "1.",hanging-indent: 3em)
 
     // 设置正文字体
 
-    // 在新页开始章节。
-    show heading.where(level: 1): it => {
-      if chapter-pagebreak {
+    // 设置一级标题
+    show heading.where(level: 1): it => { 
+      if chapter-pagebreak { // 在新页开始章节
         pagebreak(weak: true)
       }
       it
-    }
+    } 
+
+    show par.where(): it => {
+      it
+    } 
+
+    // 设置二级标题
+    show heading.where(level: 2): it => {
+      pad(it, left: 0.5em, top: 0.2em, bottom: 0.2em)
+    } 
+
+    // 设置三级标题
+    show heading.where(level: 3): it => {
+      pad(it, left: 1em)
+    } 
+
+    // 设置四级标题
+    show heading.where(level: 4): it => {
+      pad(it, left: 1.5em)
+    } 
+
+    // 设置五级标题
+    show heading.where(level: 5): it => {
+      pad(it, left: 2em)
+    } 
 
     // TODO 设置文段缩进
+    // show par: set block(inset: 0em) // 为所有段落设置缩进
+    // show list: set block(indent: 2em) // 为所有列表设置缩进
     
     // 显示正文内容
     setup-fonts(
