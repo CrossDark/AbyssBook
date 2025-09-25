@@ -352,29 +352,21 @@
       it
     } 
 
-    show par.where(): it => {
+    // 按照标题的层级缩进
+    show heading: it => {
+      set block(inset: (left: 8em * it.level))
       it
-    } 
+      "普通文本"
+    }
 
-    // 设置二级标题
-    show heading.where(level: 2): it => {
-      pad(it, left: 0.5em, top: 0.2em, bottom: 0.2em)
-    } 
-
-    // 设置三级标题
-    show heading.where(level: 3): it => {
-      pad(it, left: 1em)
-    } 
-
-    // 设置四级标题
-    show heading.where(level: 4): it => {
-      pad(it, left: 1.5em)
-    } 
-
-    // 设置五级标题
-    show heading.where(level: 5): it => {
-      pad(it, left: 2em)
-    } 
+    // 按照段落对应的标题成绩缩进
+    show par: it => context {
+      let h = query(selector(heading).before(here())).at(-1, default: none)
+      if h == none {
+        return it
+      }
+      block(inset: (left: 0.5em * h.level), it)
+    }
 
     // TODO 设置文段缩进
     // show par: set block(inset: 0em) // 为所有段落设置缩进
