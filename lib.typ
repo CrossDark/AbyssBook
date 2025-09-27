@@ -1,7 +1,5 @@
 // 本模板基于lib模板https://github.com/talal/ilm 使用DeepSeek修改而成
 
-#import "@preview/zh-kit:0.1.0": * // 在线加载中文支持包
-
 // 用于弥补缺少 `std` 作用域的工作区。
 #let std-bibliography = bibliography
 #let std-smallcaps = smallcaps
@@ -73,8 +71,17 @@
 
   set par(first-line-indent: (amount: first-line-indent, all: true))
 
-  show heading: x => { // 设置标题字体
-    set text(font: title-font)
+  show par: it => context { // 按照段落对应的标题层级缩进
+    let h = query(selector(heading).before(here())).at(-1, default: none)
+    if h == none {
+      return it
+    }
+    block(inset: (left: 0.5em * h.level), it)
+  }
+
+  show heading: x => {
+    set text(font: title-font) // 设置标题字体
+    set block(inset: (left: 1em * x.level)) // 按照标题的层级缩进
     x
   }
 
@@ -352,25 +359,7 @@
       it
     } 
 
-    // 按照标题的层级缩进
-    show heading: it => {
-      set block(inset: (left: 8em * it.level))
-      it
-      "普通文本"
-    }
-
-    // 按照段落对应的标题成绩缩进
-    show par: it => context {
-      let h = query(selector(heading).before(here())).at(-1, default: none)
-      if h == none {
-        return it
-      }
-      block(inset: (left: 0.5em * h.level), it)
-    }
-
     // TODO 设置文段缩进
-    // show par: set block(inset: 0em) // 为所有段落设置缩进
-    // show list: set block(indent: 2em) // 为所有列表设置缩进
     
     // 显示正文内容
     setup-fonts(
