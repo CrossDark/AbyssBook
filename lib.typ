@@ -71,17 +71,8 @@
 
   set par(first-line-indent: (amount: first-line-indent, all: true))
 
-  show par: it => context { // 按照段落对应的标题层级缩进
-    let h = query(selector(heading).before(here())).at(-1, default: none)
-    if h == none {
-      return it
-    }
-    block(inset: (left: 0.5em * h.level), it)
-  }
-
-  show heading: x => {
-    set text(font: title-font) // 设置标题字体
-    set block(inset: (left: 1em * x.level)) // 按照标题的层级缩进
+  show heading: x => { // 设置标题字体
+    set text(font: title-font)
     x
   }
 
@@ -352,14 +343,26 @@
     // 设置正文字体
 
     // 设置一级标题
+    
+
+    show heading: it => {
+      block(inset: (left: 1em * it.level), it)
+    }
+
+    show par: it => context { // 按照段落对应的标题层级缩进
+      let h = query(selector(heading).before(here())).at(-1, default: none)
+      if h == none {
+        return it
+      }
+      block(inset: (left: 1em * (h.level + 1)), it)
+    }
+
     show heading.where(level: 1): it => { 
       if chapter-pagebreak { // 在新页开始章节
         pagebreak(weak: true)
       }
       it
-    } 
-
-    // TODO 设置文段缩进
+    }
     
     // 显示正文内容
     setup-fonts(
