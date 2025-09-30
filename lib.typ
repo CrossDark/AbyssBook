@@ -438,21 +438,15 @@
     // Configure heading numbering.
     set heading(numbering: "1.", hanging-indent: 3em) // 编号格式和悬挂缩进 / Numbering format and hanging indent
 
-    // 设置正文字体
-    // Set main body font
-
-    // 设置一级标题
-    // Set level 1 headings
-
     // 显示标题时添加缩进
     // Add indentation when displaying headings
     show heading: it => {
       block(inset: (left: 1em * it.level), it) // 根据标题级别缩进 / Indent based on heading level
     }
 
-    // 显示段落时根据对应的标题层级缩进
+    // 显示段落和列表时根据对应的标题层级缩进
     // Indent paragraphs based on corresponding heading level
-    show par: it => context {
+    show selector.or(par, enum): it => context { // 查找标题和段落并传递给it变量
       let h = query(selector(heading).before(here())).at(-1, default: none) // 获取前一个标题 / Get previous heading
       if h == none {
         return it               // 如果没有标题，返回原段落 / Return original paragraph if no heading
@@ -460,7 +454,7 @@
       block(inset: (left: 1em * (h.level + 1)), it) // 根据标题级别+1缩进 / Indent based on heading level + 1
     }
 
-    // 显示一级标题时可能分页
+    // 显示一级标题时根据设置分页
     // Possibly page break when displaying level 1 headings
     show heading.where(level: 1): it => { 
       if chapter-pagebreak {    // 在新页开始章节 / Start chapters on new page
