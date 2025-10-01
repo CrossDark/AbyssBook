@@ -81,6 +81,7 @@
   // 设置段落首行缩进 / Set paragraph first line indent
   set par(first-line-indent: (amount: first-line-indent, all: true))
 
+  // TODO 优化
   // 显示标题时设置标题字体 / Set title font when displaying headings
   show heading: x => {
     set text(font: title-font)  // 使用标题字体 / Use title font
@@ -223,7 +224,7 @@
     title: "",                  // 标题 / Title
   ),
   
-  // 字体配置
+  // 字体配置 TODO 删除
   // Font configuration
   fonts: (
     title-font: "DuanNingMaoBiXiaoKai", // 标题字体 / Title font
