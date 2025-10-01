@@ -89,7 +89,7 @@
   }
 
   // 显示粗体时设置无衬线字体 / Set sans-serif font when displaying strong text
-  show strong: x => {
+  show selector.or(strong, emph, underline, strike, overline): x => {
     set text(font: sans-family) // 使用无衬线字体家族 / Use sans-serif font family
     x                           // 返回内容 / Return content
   }
