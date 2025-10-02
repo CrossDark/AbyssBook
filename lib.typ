@@ -94,30 +94,6 @@
     x                           // 返回内容 / Return content
   }
 
-  // 显示斜体时设置无衬线字体 / Set sans-serif font when displaying emphasized text
-  show emph: x => {
-    set text(font: sans-family) // 使用无衬线字体家族 / Use sans-serif font family
-    x                           // 返回内容 / Return content
-  }
-
-  // 显示下划线时设置无衬线字体 / Set sans-serif font when displaying underlined text
-  show underline: x => {
-    set text(font: sans-family) // 使用无衬线字体家族 / Use sans-serif font family
-    x                           // 返回内容 / Return content
-  }
-
-  // 显示删除线时设置无衬线字体 / Set sans-serif font when displaying strikethrough text
-  show strike: x => {
-    set text(font: sans-family) // 使用无衬线字体家族 / Use sans-serif font family
-    x                           // 返回内容 / Return content
-  }
-
-  // 显示上划线时设置无衬线字体 / Set sans-serif font when displaying overlined text
-  show overline: x => {
-    set text(font: sans-family) // 使用无衬线字体家族 / Use sans-serif font family
-    x                           // 返回内容 / Return content
-  }
-
   // 显示原始代码时设置等宽字体 / Set monospace font when displaying raw code
   show raw: x => {
     set text(font: mono-family) // 使用等宽字体家族 / Use monospace font family
